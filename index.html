@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iason Rodis</title>
+  <meta name="description" content="Engineering leader. Lausanne, Switzerland.">
+  <meta property="og:title" content="Iason Rodis">
+  <meta property="og:description" content="Engineering leader. From CERN to WealthTech.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Outfit', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --ease: cubic-bezier(.16,1,.3,1);
+      --col: min(620px, 100% - 48px);
+    }
+    [data-theme="dark"] {
+      --bg:#09090b; --bg2:#0f0f12; --tx:#d6d2cb; --tx2:#8a867e;
+      --tx3:#4e4b46; --ac:#c8a96a; --ln:rgba(255,255,255,.06); --ln2:rgba(255,255,255,.1);
+    }
+    [data-theme="light"] {
+      --bg:#f6f3ed; --bg2:#eceae3; --tx:#1a1816; --tx2:#6d6860;
+      --tx3:#a8a198; --ac:#8a6518; --ln:rgba(0,0,0,.07); --ln2:rgba(0,0,0,.12);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--sans);background:var(--bg);color:var(--tx);font-size:16px;line-height:1.7;font-weight:300;transition:background .5s var(--ease),color .5s var(--ease);overflow-x:hidden}
+    ::selection{background:var(--ac);color:var(--bg)}
+    a{color:var(--ac);text-decoration:none}
+
+    body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.018;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") repeat;background-size:100px}
+
+    .theme{position:fixed;top:24px;right:24px;z-index:100;width:36px;height:36px;border-radius:50%;border:1px solid var(--ln2);background:var(--bg2);color:var(--tx2);cursor:pointer;display:grid;place-items:center;transition:all .4s var(--ease)}
+    .theme:hover{border-color:var(--ac);color:var(--ac);transform:rotate(25deg)}
+    .theme svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+    .col{width:var(--col);margin:0 auto}
+
+    /* ── Hero ─────────────────── */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:80px 0;position:relative}
+    .hero-inner{display:flex;gap:48px;align-items:center}
+    .portrait{width:140px;height:140px;border-radius:50%;overflow:hidden;flex-shrink:0;border:2px solid var(--ln2)}
+    .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.4rem,6vw,3.6rem);line-height:1.08;letter-spacing:-.02em}
+    .hero h1 em{font-style:italic;color:var(--ac);font-weight:300}
+    .hero-sub{font-size:16px;color:var(--tx2);margin-top:14px}
+    .scroll-cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tx3);animation:drift 2.8s ease-in-out infinite}
+    .scroll-cue::after{content:'';width:1px;height:20px;background:linear-gradient(var(--tx3),transparent)}
+    @keyframes drift{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+
+    /* ── Sections ─────────────── */
+    .sep{height:1px;background:var(--ln);margin:80px auto;width:var(--col)}
+
+    .manifesto{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;font-style:italic;line-height:1.5;color:var(--tx);padding:80px 0;text-align:center;max-width:540px;margin:0 auto}
+
+    .label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ac);margin-bottom:16px}
+    .prose{font-size:16.5px;line-height:1.8;color:var(--tx2);max-width:56ch}
+    .prose p{margin-bottom:18px}
+    .prose p:last-child{margin-bottom:0}
+    .prose strong{font-weight:400;color:var(--tx)}
+
+    .section{padding:0 0 80px}
+
+    /* ── Arc ──────────────────── */
+    .arc{margin-top:12px}
+    .arc-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--ln)}
+    .arc-item:last-child{border-bottom:none}
+    .arc-year{font-family:var(--mono);font-size:12px;color:var(--tx3);min-width:56px;padding-top:2px}
+    .arc-text{font-size:15px;color:var(--tx2);line-height:1.6}
+    .arc-text strong{font-weight:400;color:var(--tx)}
+
+    /* ── CTA ──────────────────── */
+    .cta{padding:80px 0 60px;text-align:center}
+    .cta h2{font-family:var(--serif);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;margin-bottom:28px}
+    .links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:7px;padding:10px 22px;font-family:var(--sans);font-size:13.5px;font-weight:500;border-radius:5px;transition:all .3s var(--ease)}
+    .btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .btn-f{background:var(--ac);color:var(--bg);border:1px solid var(--ac)}
+    .btn-f:hover{opacity:.85;transform:translateY(-1px)}
+    .btn-g{background:transparent;color:var(--tx2);border:1px solid var(--ln2)}
+    .btn-g:hover{border-color:var(--ac);color:var(--tx)}
+
+    footer{padding:32px 0;border-top:1px solid var(--ln);text-align:center}
+    footer p{font-family:var(--mono);font-size:11px;color:var(--tx3)}
+
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:translateY(0)}
+
+    @media(max-width:600px){
+      .hero-inner{flex-direction:column;gap:24px}
+      .portrait{width:110px;height:110px}
+      .arc-item{flex-direction:column;gap:2px}
+      .manifesto{padding:56px 0}
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme" onclick="toggleTheme()" aria-label="Toggle theme">
+    <svg class="s" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg class="m" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="col">
+      <div class="hero-inner">
+        <div class="portrait">
+          <img src="photo.jpg" alt="Iason Rodis">
+        </div>
+        <div>
+          <h1>Iason Rodis</h1>
+          <p class="hero-sub">Engineering Director &middot; Lausanne, Switzerland</p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <!-- Manifesto -->
+  <p class="manifesto reveal">
+    I build the teams that build the product.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- About -->
+  <div class="section col reveal">
+    <div class="label">About</div>
+    <div class="prose">
+      <p>
+        I've spent seven years at the same company — not out of comfort, but because
+        I got to live every phase. Second backend hire to engineering director. Five
+        banking clients to twenty-six. Eight engineers to thirty.
+      </p>
+      <p>
+        Before that, four years at CERN building real-time systems for the
+        Large Hadron Collider. IEEE-published.
+      </p>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- How I lead -->
+  <div class="section col reveal">
+    <div class="label">How I lead</div>
+    <div class="prose">
+      <p>
+        Through influence, not authority. I make sure teams have
+        <strong>clear goals, the right context, and enough trust</strong>
+        to make decisions without waiting for permission.
+      </p>
+      <p>
+        I care about developer experience, honest technical debt prioritization,
+        and building cultures where people stay because they want to — not
+        because they haven't updated their CV.
+      </p>
+    </div>
+  </div>
+
+  <div class="sep"></div>
+
+  <!-- Arc -->
+  <div class="section col reveal">
+    <div class="label">The arc</div>
+    <div class="arc">
+      <div class="arc-item">
+        <span class="arc-year">2025 →</span>
+        <span class="arc-text"><strong>Director of Engineering</strong> — 6 teams, ~30 engineers, hybrid-cloud migration, delivery & strategy. Evooq.</span>
+      </div>
+      <div class="arc-item">
+        <span class="arc-year">2023</span>
+        <span class="arc-text"><strong>Engineering Manager</strong> — Led through a 50% headcount reduction. Built observability from zero. Evooq.</span>
+      </div>
+      <div class="arc-item">
+        <span class="arc-year">2020</span>
+        <span class="arc-text"><strong>Team Lead</strong> — Scaled 1→5 teams, 8→25 engineers. Hired 20 people. Evooq.</span>
+      </div>
+      <div class="arc-item">
+        <span class="arc-year">2019</span>
+        <span class="arc-text"><strong>Founding Engineer</strong> — Second backend hire. Built the auth layer that still runs today. Evooq.</span>
+      </div>
+      <div class="arc-item">
+        <span class="arc-year">2015</span>
+        <span class="arc-text"><strong>Software Engineer</strong> — Real-time telemetry for the LHC. IEEE & ICALEPCS published. CERN.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="col reveal">
+      <h2>Let's talk.</h2>
+      <div class="links">
+        <a href="Iason_Rodis_CV_2026.pdf" class="btn btn-f" download>
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          CV
+        </a>
+        <a href="mailto:jasrodis@gmail.com" class="btn btn-g">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/jasrodis" target="_blank" rel="noopener" class="btn btn-g">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/jasrodis" target="_blank" rel="noopener" class="btn btn-g">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="col"><p>&copy; 2026 Iason Rodis</p></div></footer>
+
+  <script>
+    function toggleTheme(){const h=document.documentElement,n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('t',n)}catch(e){}ico(n)}
+    function ico(t){document.querySelector('.s').style.display=t==='dark'?'block':'none';document.querySelector('.m').style.display=t==='light'?'block':'none'}
+    try{const s=localStorage.getItem('t');if(s){document.documentElement.setAttribute('data-theme',s);ico(s)}}catch(e){}
+    const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+  </script>
+
+</body>
+</html>
